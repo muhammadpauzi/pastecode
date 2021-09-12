@@ -19,19 +19,46 @@
                 <div class="navbar-nav">
                     <a class="nav-link mx-2 px-2" href="/">Home</a>
                 </div>
+                {% if user.is_authenticated %}
                 <div class="navbar-nav">
-                    <a class="nav-link btn btn-primary py-1 text-white mx-2 px-2" href="/login">Login</a>
+                    <a class="nav-link btn btn-primary py-1 text-white mx-1 px-2" href="/paste">Paste</a>
                 </div>
                 <div class="navbar-nav">
-                    <a class="nav-link btn btn-primary py-1 text-white mx-2 px-2" href="/register">Register</a>
+                    <a class="nav-link btn btn-danger py-1 text-white mx-1 px-2" href="/logout">Logout</a>
+                </div>
+                {% else %}
+                <div class="navbar-nav">
+                    <a class="nav-link btn btn-primary py-1 text-white mx-1 px-2" href="/login">Login</a>
                 </div>
                 <div class="navbar-nav">
-                    <a class="nav-link btn btn-primary py-1 text-white mx-2 px-2" href="/paste">Paste</a>
+                    <a class="nav-link btn btn-primary py-1 text-white mx-1 px-2" href="/register">Register</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </nav>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+
+    {% for category, message in messages %}
+
+    {% if category == 'error' %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% elif category == 'success' %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+    {% endif %}
+    {% endwith %}
 
     <div class="container mt-4">
         <div class="row">

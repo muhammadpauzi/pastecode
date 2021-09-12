@@ -7,11 +7,17 @@
     <form action="" method="post">
         <div class="mb-3">
             <label for="username" class="form-label fw-bold">Username</label>
-            <input type="text" class="form-control" id="username" name="username">
+            <input type="text" class="form-control" id="username" name="username" value="{{ username }}">
+            {% if errors['username'] %}
+            <small class="text-danger">{{ errors.username }}</small>
+            {% endif %}
         </div>
         <div class="mb-3">
             <label for="password" class="form-label fw-bold">Password</label>
             <input type="password" class="form-control" id="password" name="password">
+            {% if errors['password'] %}
+            <small class="text-danger">{{ errors.password }}</small>
+            {% endif %}
         </div>
         <button class="btn btn-primary px-3 w-100">Register</button>
         <a href="/login" class="text-center mt-4 d-block">Already have an account?, login here!</a>
