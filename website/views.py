@@ -45,5 +45,16 @@ def pastes():
 @views.route('/<int:id>')
 @login_required
 def paste_detail(id):
-    paste = Paste.query.filter_by(id=id).first()
+    paste = Paste.query.get(id)
     return render_template('paste_detail.html', user=current_user, paste=paste)
+
+@views.route('/delete/<int:id>')
+@login_required
+def delete(id):
+    paste = Paste.query.get(id)
+    if paste and paste.user_id == current_user.id:
+        db.session.delete(paste)
+        db.session.commit()
+        flash('Paste deleted!', category='success')
+
+    return redirect(url_for('views.pastes'))
