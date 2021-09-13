@@ -7,11 +7,17 @@
     <form action="" method="post">
         <div class="mb-3">
             <label for="title" class="form-label fw-bold">Title</label>
-            <input type="text" class="form-control" id="title" name="title">
+            <input type="text" class="form-control" id="title" name="title" value="{{ title }}">
+            {% if errors['title'] %}
+            <small class="text-danger">{{ errors.title }}</small>
+            {% endif %}
         </div>
         <div class="mb-3">
             <label for="code" class="form-label fw-bold">Code</label>
-            <textarea class="form-control" id="code" name="code" rows="5"></textarea>
+            <textarea class="form-control" id="code" name="code" rows="5">{{ code }}</textarea>
+            {% if errors['code'] %}
+            <small class="text-danger">{{ errors.code }}</small>
+            {% endif %}
         </div>
         <button class="btn btn-primary px-3">Save</button>
     </form>

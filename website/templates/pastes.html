@@ -4,21 +4,15 @@
 {% block content %}
 <div class="col-md-7 mx-auto">
     <h1 class="mb-4">Your Paste Code</h1>
+    {% if user.pastes %}
+    {% for paste in user.pastes %}
     <div class="py-4 px-2 d-flex justify-content-between align-items-center">
-        <h6 class="fw-normal mb-0">#1 First paste</h6>
+        <h6 class="fw-normal mb-0">{{ paste.title }}</h6>
         <a href="" class="btn btn-sm btn-primary">See</a>
     </div>
-    <div class="py-4 px-2 d-flex justify-content-between align-items-center">
-        <h6 class="fw-normal mb-0">#1 First paste</h6>
-        <a href="" class="btn btn-sm btn-primary">See</a>
-    </div>
-    <div class="py-4 px-2 d-flex justify-content-between align-items-center">
-        <h6 class="fw-normal mb-0">#1 First paste</h6>
-        <a href="" class="btn btn-sm btn-primary">See</a>
-    </div>
-    <div class="py-4 px-2 d-flex justify-content-between align-items-center">
-        <h6 class="fw-normal mb-0">#1 First paste</h6>
-        <a href="" class="btn btn-sm btn-primary">See</a>
-    </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-danger text-center fw-bold mt-5">Pastes not added yet, <a href="/paste">added here!</a></p>
+    {% endif %}
 </div>
 {% endblock %}

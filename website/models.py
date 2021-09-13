@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
 
 class Paste(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128))
     code = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now(), nullable=False)
