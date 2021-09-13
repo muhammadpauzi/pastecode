@@ -33,7 +33,7 @@ def paste():
             db.session.add(new_paste)
             db.session.commit()
             flash("Pasted code successfully!", category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.pastes'))
 
     return render_template('paste.html', title=title, code=code, errors=errors, user=current_user)
 
@@ -41,3 +41,9 @@ def paste():
 @login_required
 def pastes():
     return render_template('pastes.html', user=current_user)
+
+@views.route('/<int:id>')
+@login_required
+def paste_detail(id):
+    paste = Paste.query.filter_by(id=id).first()
+    return render_template('paste_detail.html', user=current_user, paste=paste)

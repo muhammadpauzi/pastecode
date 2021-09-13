@@ -8,7 +8,7 @@
     {% for paste in user.pastes %}
     <div class="py-4 px-2 d-flex justify-content-between align-items-center">
         <h6 class="fw-normal mb-0">{{ paste.title }}</h6>
-        <a href="" class="btn btn-sm btn-primary">See</a>
+        <a href="/{{ paste.id }}" class="btn btn-sm btn-primary">See</a>
     </div>
     {% endfor %}
     {% else %}
