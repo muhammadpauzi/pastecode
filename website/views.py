@@ -13,3 +13,8 @@ def home():
 @login_required
 def paste():
     return render_template('paste.html', user=current_user)
+
+@views.route('/pastes')
+@login_required
+def pastes():
+    return render_template('pastes.html', user=current_user)
